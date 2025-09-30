@@ -1,0 +1,163 @@
+[gd_scene load_steps=17 format=3 uid="uid://dj61y42nf5kmy"]
+
+[ext_resource type="Script" uid="uid://b8tjt7wvy2p1" path="res://Script/Hud/hud.gd" id="1_cevek"]
+[ext_resource type="Texture2D" uid="uid://cm8r4nohroesi" path="res://Asset/Icon/background.png" id="2_fmoiy"]
+[ext_resource type="Texture2D" uid="uid://b1r5fdy07iae1" path="res://Asset/Icon/dice_plus.png" id="3_et0hg"]
+[ext_resource type="Texture2D" uid="uid://dkpwvevyku7xl" path="res://Asset/DiceAnim/d4.png" id="4_3qwin"]
+[ext_resource type="Texture2D" uid="uid://b077bk88jw2ls" path="res://Asset/DiceAnim/d6.png" id="5_7odbf"]
+[ext_resource type="Texture2D" uid="uid://bn6x4jgnu5m2v" path="res://Asset/DiceAnim/d8.png" id="6_hjpjq"]
+[ext_resource type="Texture2D" uid="uid://mijqg66jua2r" path="res://Asset/DiceAnim/d10.png" id="7_axi7f"]
+[ext_resource type="Texture2D" uid="uid://b20mbqtu56u8i" path="res://Asset/DiceAnim/d12.png" id="8_ulpbq"]
+[ext_resource type="Texture2D" uid="uid://crc4nl4vw1go0" path="res://Asset/DiceAnim/d20.png" id="9_688fl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4dp7q"]
+atlas = ExtResource("4_3qwin")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_etpbg"]
+atlas = ExtResource("5_7odbf")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k2652"]
+atlas = ExtResource("6_hjpjq")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4nvls"]
+atlas = ExtResource("7_axi7f")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anp5s"]
+atlas = ExtResource("8_ulpbq")
+region = Rect2(96, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0tcp8"]
+atlas = ExtResource("9_688fl")
+region = Rect2(96, 160, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4h8nd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4dp7q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_etpbg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k2652")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4nvls")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anp5s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0tcp8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Control" type="CanvasLayer"]
+script = ExtResource("1_cevek")
+
+[node name="Sprite2D" type="TextureRect" parent="."]
+texture_repeat = 2
+offset_right = 572.358
+offset_bottom = 755.818
+scale = Vector2(1.1406254, 1.1907625)
+texture = ExtResource("2_fmoiy")
+
+[node name="addDice" type="Button" parent="."]
+visible = false
+z_index = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -130.0
+offset_top = 183.0
+offset_right = 86.0
+offset_bottom = 391.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+focus_mode = 0
+theme_override_font_sizes/font_size = 28
+disabled = true
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="addDice"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -108.0
+offset_top = -218.0
+offset_right = 108.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("3_et0hg")
+
+[node name="Label" type="Label" parent="addDice"]
+z_as_relative = false
+layout_mode = 0
+offset_left = -16.0
+offset_top = -46.0
+offset_right = 221.0
+offset_bottom = 4.0
+theme_override_font_sizes/font_size = 36
+text = "Ajouter un dé"
+
+[node name="addDiceFace" type="Button" parent="."]
+offset_left = 56.0
+offset_top = 672.0
+offset_right = 222.0
+offset_bottom = 840.0
+scale = Vector2(0.5, 0.5)
+focus_mode = 0
+theme_override_font_sizes/font_size = 28
+flat = true
+autowrap_mode = 2
+icon_alignment = 1
+vertical_icon_alignment = 2
+
+[node name="Label" type="Label" parent="addDiceFace"]
+z_as_relative = false
+layout_mode = 0
+offset_left = -16.0
+offset_top = -88.0
+offset_right = 130.0
+offset_bottom = -38.0
+theme_override_font_sizes/font_size = 36
+text = "600"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="addDiceFace"]
+position = Vector2(70, 70)
+scale = Vector2(5.34375, 5.34375)
+sprite_frames = SubResource("SpriteFrames_4h8nd")
+
+[node name="Score" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -124.5
+offset_top = 1.0
+offset_right = 124.5
+offset_bottom = 88.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 36
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="addDice" to="." method="_on_add_dice_pressed"]
+[connection signal="pressed" from="addDiceFace" to="." method="_on_add_dice_face_pressed"]

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Dice" load_steps=3 format=3 uid="uid://bnecrvn4ohqjr"]
+
+[ext_resource type="Texture2D" uid="uid://4kkx3fsiakik" path="res://Asset/Dice/cosmicDice.png" id="1_1685w"]
+[ext_resource type="Script" uid="uid://djxg3deo0iy8u" path="res://Script/Base/dice.gd" id="1_lvjtc"]
+
+[resource]
+script = ExtResource("1_lvjtc")
+id = 5
+has_effect = true
+effect_type = Array[int]([0, 1])
+item_name = "Cosmic dice"
+item_description = "Shoots faster than the launcher."
+item_texture = ExtResource("1_1685w")
+item_cost = 2500000
+metadata/_custom_type_script = "uid://djxg3deo0iy8u"

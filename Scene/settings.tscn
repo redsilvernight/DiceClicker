@@ -1,0 +1,131 @@
+[gd_scene load_steps=6 format=3 uid="uid://s25g0mo5150u"]
+
+[ext_resource type="Script" uid="uid://cj3m64y5fndu6" path="res://Script/Hud/settings.gd" id="1_mvx5f"]
+[ext_resource type="Texture2D" uid="uid://drqw5yk770sph" path="res://Asset/Icon/warning.png" id="1_qampi"]
+[ext_resource type="Texture2D" uid="uid://d0rnney16lusp" path="res://Asset/Icon/binaweb-logo.png" id="2_mvx5f"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cmh6x"]
+bg_color = Color(0.4861105, 0, 0.049961224, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cwsml"]
+bg_color = Color(0.38170314, 0.38170326, 0.38170317, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_mvx5f")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 648.0
+offset_bottom = 811.0
+color = Color(0.6039216, 0.6039216, 0.6039216, 1)
+
+[node name="Reset" type="Button" parent="ColorRect"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 248.0
+offset_right = 606.0
+offset_bottom = 329.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_cmh6x")
+text = "Reset Game"
+
+[node name="TextureRect2" type="TextureRect" parent="ColorRect/Reset"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.7992895
+anchor_top = 0.2654321
+anchor_right = 0.8667851
+anchor_bottom = 0.7345679
+offset_right = -3.0517578e-05
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("1_qampi")
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/Reset"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.13321492
+anchor_top = 0.2654321
+anchor_right = 0.20071048
+anchor_bottom = 0.7345679
+grow_vertical = 2
+texture = ExtResource("1_qampi")
+metadata/_edit_use_anchors_ = true
+
+[node name="Exit Game" type="Button" parent="ColorRect"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 130.0
+offset_right = 606.0
+offset_bottom = 211.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_cwsml")
+text = "Exit Game"
+
+[node name="MuteSound" type="CheckBox" parent="ColorRect"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 38.0
+offset_right = 119.666664
+offset_bottom = 62.0
+scale = Vector2(3, 3)
+focus_mode = 0
+
+[node name="Label" type="Label" parent="ColorRect/MuteSound"]
+layout_mode = 0
+offset_left = 31.000002
+offset_top = 7.3333335
+offset_right = 147.0
+offset_bottom = 35.333332
+scale = Vector2(0.33, 0.33)
+theme_override_font_sizes/font_size = 20
+text = "Mute sound"
+
+[node name="Label" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 380.0
+offset_right = 606.0
+offset_bottom = 481.0
+text = "Game developped and designed entirely by BinaWeb.
+
+This game use sounds and musics of Tunetank, u_qpfzpydtro, freesound_community on the platform Pixabay."
+autowrap_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect"]
+layout_mode = 0
+offset_left = 236.0
+offset_top = 542.0
+offset_right = 936.0
+offset_bottom = 1242.0
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_mvx5f")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="ColorRect/TextureRect"]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 740.0
+offset_right = 195.0
+offset_bottom = 799.0
+scale = Vector2(4, 4)
+theme_override_font_sizes/font_size = 20
+text = "www.binaweb.fr
+"
+
+[connection signal="pressed" from="ColorRect/Reset" to="." method="_on_reset_pressed"]
+[connection signal="pressed" from="ColorRect/Exit Game" to="." method="_on_exit_game_pressed"]
+[connection signal="toggled" from="ColorRect/MuteSound" to="." method="_on_mute_sound_toggled"]

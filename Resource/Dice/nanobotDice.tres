@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Dice" load_steps=3 format=3 uid="uid://cpco8bo83vj6k"]
+
+[ext_resource type="Texture2D" uid="uid://bk1s3q7cj1pgv" path="res://Asset/Dice/nanoDice.png" id="1_s4bpc"]
+[ext_resource type="Script" uid="uid://djxg3deo0iy8u" path="res://Script/Base/dice.gd" id="1_tiedr"]
+
+[resource]
+script = ExtResource("1_tiedr")
+id = 3
+roll_duration = 0.1
+item_name = "Nanobot dice"
+item_description = "Don't turn. Change sides directly. It's faster."
+item_texture = ExtResource("1_s4bpc")
+item_cost = 25000
+metadata/_custom_type_script = "uid://djxg3deo0iy8u"

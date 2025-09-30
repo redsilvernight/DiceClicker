@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Dice" load_steps=3 format=3 uid="uid://cpwhdmw8osi5r"]
+
+[ext_resource type="Texture2D" uid="uid://bod747jivhbcn" path="res://Asset/Dice/oiledDice.png" id="1_0oc2d"]
+[ext_resource type="Script" uid="uid://djxg3deo0iy8u" path="res://Script/Base/dice.gd" id="1_wn58c"]
+
+[resource]
+script = ExtResource("1_wn58c")
+id = 1
+roll_duration = 3.0
+item_name = "Oiled dice"
+item_description = "Soaked in frying oil for extra speed."
+item_texture = ExtResource("1_0oc2d")
+item_cost = 250
+metadata/_custom_type_script = "uid://djxg3deo0iy8u"

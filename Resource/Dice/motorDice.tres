@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Dice" load_steps=3 format=3 uid="uid://bxvkd13c6h31l"]
+
+[ext_resource type="Script" uid="uid://djxg3deo0iy8u" path="res://Script/Base/dice.gd" id="1_3srga"]
+[ext_resource type="Texture2D" uid="uid://bdqn2xp5ul4xq" path="res://Asset/Dice/motorDice.png" id="1_3ywsc"]
+
+[resource]
+script = ExtResource("1_3srga")
+id = 2
+roll_duration = 1.0
+item_name = "Motorized dice"
+item_description = "Spins faster with a cutting-edge motor."
+item_texture = ExtResource("1_3ywsc")
+item_cost = 2500
+metadata/_custom_type_script = "uid://djxg3deo0iy8u"

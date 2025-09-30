@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Dice" load_steps=3 format=3 uid="uid://ol3m5sn3qufg"]
+
+[ext_resource type="Script" uid="uid://djxg3deo0iy8u" path="res://Script/Base/dice.gd" id="1_7ssl5"]
+[ext_resource type="Texture2D" uid="uid://bpyi65qbpve7v" path="res://Asset/Dice/defaultDice.png" id="1_epkos"]
+
+[resource]
+script = ExtResource("1_7ssl5")
+roll_duration = 5.0
+item_name = "Simple dice"
+item_description = "That's a dice."
+item_texture = ExtResource("1_epkos")
+metadata/_custom_type_script = "uid://djxg3deo0iy8u"

@@ -1,0 +1,110 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtpd0r2qwbsq3"]
+
+[ext_resource type="Texture2D" uid="uid://bwxlgrwt6uewh" path="res://Asset/Roller/nerd.png" id="1_0edhf"]
+[ext_resource type="Texture2D" uid="uid://caspv3rpbx7fe" path="res://Asset/Icon/coin.png" id="2_0edhf"]
+
+[node name="ItemCard" type="Control"]
+show_behind_parent = true
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -26.0
+offset_bottom = 182.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_top = 16.0
+offset_right = 648.0
+offset_bottom = 208.0
+mouse_filter = 1
+color = Color(0.6039216, 0.6039216, 0.6039216, 1)
+
+[node name="Texture" type="TextureRect" parent="ColorRect"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1252826
+anchor_top = 0.42056075
+anchor_right = 0.1252826
+anchor_bottom = 0.42056075
+offset_left = -6.1831284
+offset_right = -6.1831284
+grow_vertical = 2
+scale = Vector2(3, 3)
+texture = ExtResource("1_0edhf")
+expand_mode = 1
+stretch_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="Buyed" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 136.0
+offset_right = 152.0
+offset_bottom = 181.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "0"
+
+[node name="Name" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_left = 172.0
+offset_top = 14.0
+offset_right = 339.0
+offset_bottom = 59.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "Item name"
+
+[node name="Description" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_left = 172.0
+offset_top = 75.0
+offset_right = 415.0
+offset_bottom = 165.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Ceci est une moyenne description d'un item tout à fait lambda."
+autowrap_mode = 2
+
+[node name="BuyButton" type="Button" parent="ColorRect"]
+layout_mode = 0
+offset_left = 432.0
+offset_top = 48.0
+offset_right = 624.0
+offset_bottom = 240.0
+scale = Vector2(0.5, 0.5)
+focus_mode = 0
+icon = ExtResource("2_0edhf")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Price" type="Label" parent="ColorRect/BuyButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -4.5
+anchor_top = -0.5
+anchor_right = -4.5
+anchor_bottom = -0.5
+offset_left = 1056.0
+offset_top = 160.0
+offset_right = 1216.0
+offset_bottom = 215.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "50"
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect"]
+layout_mode = 0
+offset_top = -16.0
+offset_right = 648.0
+color = Color(0.4700758, 0.47007585, 0.47007567, 1)

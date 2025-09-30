@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Dice" load_steps=3 format=3 uid="uid://bf3wbtiu70r2y"]
+
+[ext_resource type="Script" uid="uid://djxg3deo0iy8u" path="res://Script/Base/dice.gd" id="1_fbvpk"]
+[ext_resource type="Texture2D" uid="uid://b3mmab3xkvh1g" path="res://Asset/Dice/quantumDice.png" id="1_pa61s"]
+
+[resource]
+script = ExtResource("1_fbvpk")
+id = 4
+has_effect = true
+effect_type = Array[int]([0])
+item_name = "Quantum dice"
+item_description = "All possible states at the same time. So every faces count."
+item_texture = ExtResource("1_pa61s")
+item_cost = 250000
+metadata/_custom_type_script = "uid://djxg3deo0iy8u"

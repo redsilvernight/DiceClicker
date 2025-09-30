@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="Roller" load_steps=2 format=3 uid="uid://bo8qpig46ndd1"]
+
+[ext_resource type="Script" uid="uid://bkl10tsppmh56" path="res://Script/Base/roller.gd" id="1_hlwcf"]
+
+[resource]
+resource_name = "Roller"
+script = ExtResource("1_hlwcf")

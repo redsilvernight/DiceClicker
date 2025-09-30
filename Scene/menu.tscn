@@ -1,0 +1,273 @@
+[gd_scene load_steps=17 format=3 uid="uid://siyddb81uneg"]
+
+[ext_resource type="Script" uid="uid://bj0t1y7omahmh" path="res://Script/Hud/menu.gd" id="1_eas8t"]
+[ext_resource type="Texture2D" uid="uid://btm1syevdli2o" path="res://Asset/Icon/close.png" id="2_6hgn1"]
+[ext_resource type="Texture2D" uid="uid://cf1ry6kvmwix6" path="res://Asset/Icon/scoreboard.png" id="2_alu6o"]
+[ext_resource type="Texture2D" uid="uid://dwre1ed783f0g" path="res://Asset/Icon/upgrade.png" id="3_ffxp3"]
+[ext_resource type="Texture2D" uid="uid://cro3ldo5ocbpx" path="res://Asset/Icon/setting.png" id="3_u2k45"]
+[ext_resource type="Texture2D" uid="uid://bpyi65qbpve7v" path="res://Asset/Dice/defaultDice.png" id="5_k52wo"]
+[ext_resource type="Texture2D" uid="uid://c52qxdjtrvoab" path="res://Asset/Icon/upgrade_arrow.png" id="6_fyf5i"]
+[ext_resource type="Texture2D" uid="uid://bod747jivhbcn" path="res://Asset/Dice/oiledDice.png" id="7_ddci3"]
+[ext_resource type="PackedScene" uid="uid://s25g0mo5150u" path="res://Scene/settings.tscn" id="9_ddci3"]
+[ext_resource type="PackedScene" uid="uid://c03t1uln78it3" path="res://Scene/leaderboard.tscn" id="9_iaqyx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eas8t"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k52wo"]
+bg_color = Color(0.43859875, 0.1465416, 0.15635458, 0.6)
+
+[sub_resource type="Animation" id="Animation_u2k45"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -279)]
+}
+
+[sub_resource type="Animation" id="Animation_eas8t"]
+resource_name = "closeMenu"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -879), Vector2(0, -279)]
+}
+
+[sub_resource type="Animation" id="Animation_b23qx"]
+resource_name = "openMenu"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -279), Vector2(0, -879)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u2k45"]
+_data = {
+&"RESET": SubResource("Animation_u2k45"),
+&"closeMenu": SubResource("Animation_eas8t"),
+&"openMenu": SubResource("Animation_b23qx")
+}
+
+[node name="menu" type="Control"]
+z_index = 10
+layout_mode = 3
+anchor_top = 0.87100005
+anchor_right = 1.0
+anchor_bottom = 1.702
+offset_top = 279.09998
+offset_right = -648.0
+offset_bottom = -468.80005
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_eas8t")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_top = -279.0
+offset_right = 648.0
+offset_bottom = 443.0
+color = Color(0.47058824, 0.47058824, 0.47058824, 1)
+metadata/_edit_lock_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 13.0
+offset_bottom = 107.0
+grow_horizontal = 2
+theme_override_constants/separation = 119
+alignment = 1
+
+[node name="Leaderboard" type="Button" parent="ColorRect/HBoxContainer"]
+z_index = 2
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+focus_mode = 0
+icon = ExtResource("2_alu6o")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Upgrade" type="Button" parent="ColorRect/HBoxContainer"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+focus_mode = 0
+icon = ExtResource("3_ffxp3")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Settings" type="Button" parent="ColorRect/HBoxContainer"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+focus_mode = 0
+icon = ExtResource("3_u2k45")
+flat = true
+icon_alignment = 2
+expand_icon = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.16066484
+anchor_bottom = 1.0366759
+offset_right = 655.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_eas8t")
+horizontal_scroll_mode = 0
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="upgradeMenu" type="Control" parent="ColorRect/ScrollContainer"]
+visible = false
+layout_mode = 2
+
+[node name="rollerMenu" type="VBoxContainer" parent="ColorRect/ScrollContainer/upgradeMenu"]
+custom_minimum_size = Vector2(0, 800)
+layout_mode = 0
+offset_top = 80.0
+offset_right = 647.0
+offset_bottom = 880.0
+theme_override_constants/separation = 208
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/ScrollContainer/upgradeMenu"]
+custom_minimum_size = Vector2(647, 100)
+layout_mode = 0
+offset_right = 647.0
+offset_bottom = 160.0
+theme_override_constants/separation = 154
+alignment = 1
+
+[node name="ButtonCurrentDice" type="Button" parent="ColorRect/ScrollContainer/upgradeMenu/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+focus_mode = 0
+mouse_filter = 1
+flat = true
+metadata/_edit_lock_ = true
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/ScrollContainer/upgradeMenu/HBoxContainer/ButtonCurrentDice"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -54.0
+offset_right = 108.0
+offset_bottom = 54.0
+grow_vertical = 2
+texture = ExtResource("5_k52wo")
+metadata/_edit_lock_ = true
+
+[node name="ButtonUpgrade" type="Button" parent="ColorRect/ScrollContainer/upgradeMenu/HBoxContainer"]
+z_index = 1
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+focus_mode = 0
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.19460857, 0.16054845, 0.010174011, 1)
+theme_override_font_sizes/font_size = 23
+text = "Upgrade"
+flat = true
+expand_icon = true
+metadata/_edit_lock_ = true
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/ScrollContainer/upgradeMenu/HBoxContainer/ButtonUpgrade"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -236.0
+offset_top = -50.0
+offset_right = 14.0
+offset_bottom = 56.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("6_fyf5i")
+metadata/_edit_lock_ = true
+
+[node name="ButtonNextDice" type="Button" parent="ColorRect/ScrollContainer/upgradeMenu/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+focus_mode = 0
+mouse_filter = 1
+flat = true
+metadata/_edit_lock_ = true
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/ScrollContainer/upgradeMenu/HBoxContainer/ButtonNextDice"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -108.0
+offset_top = -54.0
+offset_bottom = 54.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("7_ddci3")
+metadata/_edit_lock_ = true
+
+[node name="settingsMenu" parent="ColorRect/ScrollContainer" instance=ExtResource("9_ddci3")]
+visible = false
+layout_mode = 2
+
+[node name="leaderboard" parent="ColorRect/ScrollContainer" instance=ExtResource("9_iaqyx")]
+visible = false
+layout_mode = 2
+
+[node name="Close" type="Button" parent="ColorRect"]
+z_index = 3
+layout_mode = 0
+offset_top = 650.0
+offset_right = 648.0
+offset_bottom = 720.0
+focus_mode = 0
+theme_override_styles/hover = SubResource("StyleBoxFlat_k52wo")
+icon = ExtResource("2_6hgn1")
+icon_alignment = 1
+expand_icon = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_u2k45")
+}
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[connection signal="pressed" from="ColorRect/HBoxContainer/Leaderboard" to="." method="_on_leaderboard_pressed"]
+[connection signal="pressed" from="ColorRect/HBoxContainer/Upgrade" to="." method="_on_upgrade_pressed"]
+[connection signal="pressed" from="ColorRect/HBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="ColorRect/ScrollContainer/upgradeMenu/HBoxContainer/ButtonCurrentDice" to="." method="_on_button_current_dice_pressed"]
+[connection signal="pressed" from="ColorRect/ScrollContainer/upgradeMenu/HBoxContainer/ButtonUpgrade" to="." method="_on_button_upgrade_pressed"]
+[connection signal="pressed" from="ColorRect/ScrollContainer/upgradeMenu/HBoxContainer/ButtonNextDice" to="." method="_on_button_next_dice_pressed"]
+[connection signal="pressed" from="ColorRect/Close" to="." method="_on_close_pressed"]

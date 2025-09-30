@@ -1,0 +1,105 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxdbnhyusx5vb"]
+
+[ext_resource type="Texture2D" uid="uid://caspv3rpbx7fe" path="res://Asset/Icon/coin.png" id="1_nfqec"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nfqec"]
+bg_color = Color(0.83033526, 0.83033514, 0.830335, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.7204674, 0.72046757, 0.7204671, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[node name="PopupDice" type="Popup"]
+transparent_bg = true
+oversampling_override = 1.0
+initial_position = 1
+size = Vector2i(600, 193)
+visible = true
+transparent = true
+
+[node name="ColorRect" type="Panel" parent="."]
+texture_filter = 1
+clip_contents = true
+offset_right = 600.0
+offset_bottom = 193.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_nfqec")
+
+[node name="Texture" type="TextureRect" parent="ColorRect"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 75.0
+offset_top = -6.5
+offset_right = 75.0
+offset_bottom = -6.5
+grow_vertical = 2
+scale = Vector2(6, 6)
+expand_mode = 1
+stretch_mode = 3
+
+[node name="Buyed" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 129.0
+offset_right = 144.0
+offset_bottom = 174.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "0"
+
+[node name="Name" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_left = 149.0
+offset_top = 14.0
+offset_right = 316.0
+offset_bottom = 59.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "Item name"
+
+[node name="Description" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_left = 149.0
+offset_top = 75.0
+offset_right = 392.0
+offset_bottom = 165.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Ceci est une moyenne description d'un item tout à fait lambda."
+autowrap_mode = 2
+
+[node name="BuyButton" type="Button" parent="ColorRect"]
+layout_mode = 0
+offset_left = 399.0
+offset_top = 65.0
+offset_right = 591.0
+offset_bottom = 233.0
+scale = Vector2(0.5, 0.5)
+focus_mode = 0
+icon = ExtResource("1_nfqec")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Price" type="Label" parent="ColorRect/BuyButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -4.5
+anchor_top = -0.5
+anchor_right = -4.5
+anchor_bottom = -0.5
+offset_left = 1040.0
+offset_top = 132.0
+offset_right = 1200.0
+offset_bottom = 187.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "50"
+vertical_alignment = 1

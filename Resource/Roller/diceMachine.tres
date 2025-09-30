@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Roller" load_steps=3 format=3 uid="uid://btla6c55ov152"]
+
+[ext_resource type="Texture2D" uid="uid://thf8kj1jigtg" path="res://Asset/Roller/diceMachine.png" id="1_qyb6v"]
+[ext_resource type="Script" uid="uid://bkl10tsppmh56" path="res://Script/Base/roller.gd" id="2_70yxg"]
+
+[resource]
+script = ExtResource("2_70yxg")
+rolling_frequence = 2.0
+item_type = 1
+item_name = "Dice machine"
+item_description = "An ultra-optimized machine for the task of rolling dice."
+item_texture = ExtResource("1_qyb6v")
+item_cost = 50000
+metadata/_custom_type_script = "uid://bkl10tsppmh56"
