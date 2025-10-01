@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://duad4ur8nngl8"]
+
+[ext_resource type="Script" uid="uid://cqt7ymidi4ys6" path="res://Script/audio_manager.gd" id="1_hmrhg"]
+[ext_resource type="AudioStream" uid="uid://dt0bw5eig70cu" path="res://Asset/Sound/Ambiance.mp3" id="1_ucjau"]
+[ext_resource type="AudioStream" uid="uid://cbeprrqv7yaqh" path="res://Asset/Sound/Purchase.mp3" id="2_hmrhg"]
+[ext_resource type="AudioStream" uid="uid://bksfd7jpufv5x" path="res://Asset/Sound/Dice_roll.mp3" id="3_gp5ax"]
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("1_hmrhg")
+
+[node name="AmbianceMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_ucjau")
+volume_db = -20.0
+autoplay = true
+parameters/looping = false
+
+[node name="BuySound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_hmrhg")
+volume_db = -20.0
+
+[node name="RollingSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_gp5ax")
+volume_db = -15.0

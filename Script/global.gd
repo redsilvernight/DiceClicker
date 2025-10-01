@@ -2,7 +2,6 @@ extends Node
 
 var current_dice : Dice
 var menu_is_open: bool = false
-var sound_is_mute: bool = false
 
 var all_dice_face: Array = [4, 6, 8, 10, 12, 20]
 var max_dice: int = 5
@@ -17,13 +16,13 @@ var score: int
 @onready var icon_current_nbr_face: CompressedTexture2D = getIconCurrentNbrFace()
 
 func _ready() -> void:
-	connect("tree_exiting",Callable(self,"_on_tree_exiting"))
+	connect("tree_exiting", Callable(self, "_on_tree_exiting"))
 	loadGame()
 
 func getIconCurrentNbrFace() -> CompressedTexture2D:
 	icon_current_nbr_face = load(str("res://Asset/Dice/d", nbr_dice_face, ".png"))
 	return icon_current_nbr_face
-	
+
 func getRollers() -> Dictionary:
 	var resource_dir = DirAccess.open("res://Resource/Roller")
 	var rollers : Dictionary
@@ -59,7 +58,7 @@ func addDiceFace(price):
 		get_parent().get_node("Main").get_node("Hud").get_node("RollDice").get_node("AnimatedSprite2D").frame = 1
 		get_parent().get_node("Main").get_node("Hud").updateDiceFace()
 		getIconCurrentNbrFace()
-		
+
 func addDice(price):
 	if nbr_dice < max_dice:
 		nbr_dice += 1
@@ -75,7 +74,7 @@ func saveGame():
 		"current_dice": current_dice.id,
 		"current_nbr_face": nbr_dice_face,
 		"current_nbr_dice": nbr_dice,
-		"sound_is_mute": sound_is_mute,
+		"sound_is_mute": AudioManager.sound_is_mute,
 		"timestamp" : Time.get_unix_time_from_system()
 	}
 	
@@ -99,8 +98,7 @@ func loadGame():
 				nbr_dice_face = data["current_nbr_face"]
 				icon_current_nbr_face = load(str("res://Asset/Dice/d", nbr_dice_face, ".png"))
 				current_dice = all_dice[data["current_dice"]]
-				sound_is_mute = data["sound_is_mute"]
-				AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), sound_is_mute)
+				AudioManager.toggleMuteSound(data["sound_is_mute"])
 				
 				var passed_time = Time.get_unix_time_from_system() - data['timestamp']
 				

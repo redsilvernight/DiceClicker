@@ -2,7 +2,7 @@ extends Node2D
 
 func _process(_delta: float) -> void:
 	autoClick()
-	
+
 func autoClick():
 	var multiplicator = 0.5 if Global.current_dice.effect_type.has(Dice.EffectType.COSMIC) else 1.0
 	for roller in Global.all_rollers.values():

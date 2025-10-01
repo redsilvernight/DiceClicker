@@ -100,8 +100,7 @@ func rollerBuyed(roller, price):
 	
 	updateCard(updated_card, roller, 1)
 	node_menu.get_parent().get_parent().get_parent().get_node("Hud").updateScore(roller.item_texture, price)
-	node_menu.get_parent().get_parent().get_parent().get_node("BuySound").play()
-	
+	AudioManager.playBuySound()
 
 func showDice(menu, type, upgrade = 0):
 	var dice
@@ -129,6 +128,6 @@ func diceBuyed(dice, card):
 		card.get_parent().hide()
 		updateAllCard()
 		node_menu.get_parent().get_parent().get_parent().get_node("Hud").updateScore(dice.item_texture, -dice.item_cost)
-		node_menu.get_parent().get_parent().get_parent().get_node("BuySound").play()
+		AudioManager.playBuySound()
 		node_menu.get_parent().updateDice()
 		

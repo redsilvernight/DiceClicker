@@ -21,9 +21,7 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 			start_rolling()
 
 func start_rolling() -> void:
-	var pitch = [0.8, 1.0, 1.2].pick_random()
-	$SoundDiceRolling.pitch_scale = pitch
-	$SoundDiceRolling.play()
+	AudioManager.playRollingSound()
 	dice_rolling = true
 	$AnimatedSprite2D.play("roll_d" + str(Global.nbr_dice_face))
 	$RollingTimer.start()

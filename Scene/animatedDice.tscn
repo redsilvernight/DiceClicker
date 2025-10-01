@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=3 uid="uid://ch4rdcf5tuetv"]
+[gd_scene load_steps=99 format=3 uid="uid://ch4rdcf5tuetv"]
 
 [ext_resource type="Script" uid="uid://bf3yv17qc7oy2" path="res://Script/animatedDice.gd" id="1_0wfyh"]
 [ext_resource type="Texture2D" uid="uid://mijqg66jua2r" path="res://Asset/DiceAnim/d10.png" id="2_gkk57"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://crc4nl4vw1go0" path="res://Asset/DiceAnim/d20.png" id="4_jelvc"]
 [ext_resource type="Texture2D" uid="uid://bn6x4jgnu5m2v" path="res://Asset/DiceAnim/d8.png" id="4_tbgi4"]
 [ext_resource type="Texture2D" uid="uid://dkpwvevyku7xl" path="res://Asset/DiceAnim/d4.png" id="5_0y7m7"]
-[ext_resource type="AudioStream" uid="uid://bksfd7jpufv5x" path="res://Asset/Sound/Dice_roll.mp3" id="8_jelvc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1pg7g"]
 atlas = ExtResource("2_gkk57")
@@ -721,10 +720,6 @@ one_shot = true
 position = Vector2(-2, -8)
 shape = SubResource("CircleShape2D_jyhfs")
 metadata/_edit_lock_ = true
-
-[node name="SoundDiceRolling" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("8_jelvc")
-volume_db = -15.0
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="timeout" from="RollingTimer" to="." method="finish_rolling"]
