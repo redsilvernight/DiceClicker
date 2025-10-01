@@ -3,7 +3,6 @@ extends Node
 var sceneCardUpgrade = preload("res://Scene/item_card.tscn")
 var scenePopUp = preload("res://Scene/popup_dice.tscn")
 var node_menu
-var bw_shader = preload("res://Shaders/blackwhite.gdshader")
 	
 func setupScreen(menu):
 	node_menu = menu
@@ -36,10 +35,7 @@ func updateAllCard():
 			if nextDicePrice <= Global.score:
 				btnNextDice.material = null
 			else:
-				var mat = ShaderMaterial.new()
-				mat.shader = bw_shader
-				mat.set_shader_parameter("intensity", 1.0)
-				btnNextDice.material = mat
+				btnNextDice.material = ShaderManager.bwShaderMaterial()
 		
 		var all_card = upgrade_menu.get_node("rollerMenu").get_children()
 		var roller_values = Global.all_rollers.values()
@@ -83,11 +79,8 @@ func updateCard(card, item, upgrade = 0):
 		buy_button.material = null
 		buy_button.disabled = false
 	else:
-		var mat = ShaderMaterial.new()
-		mat.shader = bw_shader
-		mat.set_shader_parameter("intensity", 1.0)
-		icon.material = mat
-		buy_button.material = mat
+		icon.material = ShaderManager.bwShaderMaterial()
+		buy_button.material = ShaderManager.bwShaderMaterial()
 		buy_button.disabled = true
 
 func rollerBuyed(roller, price):

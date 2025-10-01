@@ -131,9 +131,9 @@ vertical_icon_alignment = 2
 [node name="Label" type="Label" parent="addDiceFace"]
 z_as_relative = false
 layout_mode = 0
-offset_left = -16.0
+offset_left = -70.0
 offset_top = -88.0
-offset_right = 130.0
+offset_right = 194.0
 offset_bottom = -38.0
 theme_override_font_sizes/font_size = 36
 text = "600"

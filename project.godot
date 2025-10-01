@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Global="*res://Script/global.gd"
 AudioManager="*res://Scene/audio_manager.tscn"
+ShaderManager="*res://Script/shader_manager.gd"
 
 [display]
 
