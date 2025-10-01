@@ -22,7 +22,7 @@ func updateDiceFace():
 	
 func updateScore(texture, score = 0):
 	Global.score += score
-	$Score.text = Global.displayNumber(Global.score)
+	$Score.text = Global.displayNumber(Global.score, true)
 	if score != 0:
 		scorePopup(score, texture)
 

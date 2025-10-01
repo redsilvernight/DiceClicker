@@ -57,9 +57,9 @@ func updateCard(card, item, upgrade = 0):
 	if upgrade == 1:
 		card.get_node("BuyButton").show()
 		if item.item_type == Item.ItemType.ROLLER:
-			card.get_node("BuyButton").get_node("Price").text = str(int(item.getCurrentPrice(item)))
+			card.get_node("BuyButton").get_node("Price").text = Global.displayNumber(int(item.getCurrentPrice(item)))
 		else:
-			card.get_node("BuyButton").get_node("Price").text = str(int(item.item_cost))
+			card.get_node("BuyButton").get_node("Price").text = Global.displayNumber(int(item.item_cost))
 		if item.item_type == Item.ItemType.DICE:
 			if card.get_node("BuyButton").is_connected("pressed", self.diceBuyed):
 				card.get_node("BuyButton").disconnect("pressed", self.diceBuyed)

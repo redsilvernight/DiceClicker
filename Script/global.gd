@@ -146,7 +146,7 @@ func _notification(what: int) -> void:
 func _on_tree_exiting():
 	saveGame()
 
-func displayNumber(number: int) -> String:
+func displayNumber(number: int, withDecimals: bool = false) -> String:
 	var strNumber = str(number)
 	var numberWithComa = ""
 	var count = 0
@@ -166,9 +166,12 @@ func displayNumber(number: int) -> String:
 			break
 		
 		currentSuffix = suffix
-		if decimals != "" and int(decimals) >= 500:
-			numberSplit[-1] = str(int(numberSplit[-1]) + 1)
-		decimals = numberSplit[-1]
+		if withDecimals:
+			if decimals != "" and int(decimals) >= 500:
+				numberSplit[-1] = str(int(numberSplit[-1]) + 1)
+			decimals = numberSplit[-1]
+		elif int(numberSplit[-1]) >= 500:
+			numberSplit[-2] = str(int(numberSplit[-2]) + 1)
 		numberSplit.resize(numberSplit.size() - 1)
 	
 	if decimals != "":
