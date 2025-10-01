@@ -11,29 +11,15 @@ var nbr_dice_face: int = all_dice_face[0]
 var nbr_dice: int = 1
 
 var score: int
-var hight_score: int
-var player_name: String
 
 @onready var all_rollers: Dictionary = getRollers()
 @onready var all_dice: Array = getDice()
 @onready var icon_current_nbr_face: CompressedTexture2D = getIconCurrentNbrFace()
 
 func _ready() -> void:
-	leaderboardConnect()
 	connect("tree_exiting",Callable(self,"_on_tree_exiting"))
 	loadGame()
 
-func leaderboardConnect():
-	SilentWolf.configure({
-		"api_key": "SDJh1cCb468IhiDdktqtn4fF1LcxzOee6Dqpj9xq",
-		"game_id": "diceclicker",
-		"log_level": 1
-	})
-
-	SilentWolf.configure_scores({
-		"open_scene_on_close": "res://Scenes/Main.tscn"
-	})
-		
 func getIconCurrentNbrFace() -> CompressedTexture2D:
 	icon_current_nbr_face = load(str("res://Asset/Dice/d", nbr_dice_face, ".png"))
 	return icon_current_nbr_face
@@ -84,9 +70,7 @@ func saveGame():
 		buyed_roller[roller.item_name] = roller.buyed
 	
 	var save_data: Dictionary = {
-		"player_name" : player_name,
 		"score" : score,
-		"hight_score" : score if score > hight_score else hight_score,
 		"buyed_roller": buyed_roller,
 		"current_dice": current_dice.id,
 		"current_nbr_face": nbr_dice_face,
@@ -100,12 +84,7 @@ func saveGame():
 	if savefile:
 		savefile.store_string(JSON.stringify(save_data))
 		savefile.close()
-
-func saveHightScore():
-	if player_name and score > hight_score:
-		print("ok")
-		var sw_result: Dictionary = await SilentWolf.Scores.save_score(player_name, score).sw_save_score_complete
-
+	
 func loadGame():
 	if FileAccess.file_exists("user://saveGame.json"):
 		var savefile = FileAccess.open("user://saveGame.json",FileAccess.READ)
@@ -115,9 +94,7 @@ func loadGame():
 			savefile.close()
 			
 			if typeof(data) == TYPE_DICTIONARY:
-				player_name = data["player_name"]
 				score = data["score"]
-				hight_score = data["hight_score"]
 				nbr_dice = data["current_nbr_dice"]
 				nbr_dice_face = data["current_nbr_face"]
 				icon_current_nbr_face = load(str("res://Asset/Dice/d", nbr_dice_face, ".png"))
@@ -162,9 +139,7 @@ func resetGame():
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		saveGame()
-		await get_tree().create_timer(1).timeout
 		get_tree().quit()
 		
 func _on_tree_exiting():
-	get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
-	
+	saveGame()

@@ -1,6 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://c03t1uln78it3"]
-
-[ext_resource type="Script" uid="uid://hey26lebexyo" path="res://Script/Hud/leaderboard.gd" id="1_xr8rx"]
+[gd_scene format=3 uid="uid://c03t1uln78it3"]
 
 [node name="Leaderboard" type="Control"]
 layout_mode = 3
@@ -9,7 +7,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_xr8rx")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
@@ -28,101 +25,13 @@ text = "Leaderboard"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="ColorRect"]
+[node name="Label2" type="Label" parent="ColorRect"]
 layout_mode = 0
-offset_top = 130.0
-offset_right = 648.0
-offset_bottom = 811.0
-
-[node name="Control" type="Control" parent="ColorRect/ScrollContainer"]
-layout_mode = 2
-
-[node name="SignUpMenu" type="VBoxContainer" parent="ColorRect/ScrollContainer/Control"]
-visible = false
-layout_mode = 0
-offset_right = 648.0
-offset_bottom = 322.0
-theme_override_constants/separation = 19
-
-[node name="Inscription" type="Label" parent="ColorRect/ScrollContainer/Control/SignUpMenu"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 31
-text = "Sign up"
+offset_left = 40.0
+offset_top = 141.0
+offset_right = 603.0
+offset_bottom = 175.0
+theme_override_font_sizes/font_size = 24
+text = "work in progress"
 horizontal_alignment = 1
-
-[node name="email" type="TextEdit" parent="ColorRect/ScrollContainer/Control/SignUpMenu"]
-custom_minimum_size = Vector2(500, 50)
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 26
-placeholder_text = "Enter your email adress"
-
-[node name="username" type="TextEdit" parent="ColorRect/ScrollContainer/Control/SignUpMenu"]
-custom_minimum_size = Vector2(500, 50)
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 26
-placeholder_text = "Enter your username"
-
-[node name="password" type="TextEdit" parent="ColorRect/ScrollContainer/Control/SignUpMenu"]
-custom_minimum_size = Vector2(500, 50)
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 26
-placeholder_text = "Enter your password"
-
-[node name="confirmPassword" type="TextEdit" parent="ColorRect/ScrollContainer/Control/SignUpMenu"]
-custom_minimum_size = Vector2(500, 50)
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 26
-placeholder_text = "Confirm your password"
-
-[node name="validUsername" type="Button" parent="ColorRect/ScrollContainer/Control/SignUpMenu"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Sign up"
-
-[node name="SignInMenu" type="VBoxContainer" parent="ColorRect/ScrollContainer/Control"]
-visible = false
-layout_mode = 0
-offset_right = 648.0
-offset_bottom = 322.0
-theme_override_constants/separation = 19
-
-[node name="Label" type="Label" parent="ColorRect/ScrollContainer/Control/SignInMenu"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 31
-text = "Sign In"
-horizontal_alignment = 1
-
-[node name="TextEdit" type="TextEdit" parent="ColorRect/ScrollContainer/Control/SignInMenu"]
-custom_minimum_size = Vector2(500, 50)
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 26
-placeholder_text = "Enter your username"
-
-[node name="TextEdit3" type="TextEdit" parent="ColorRect/ScrollContainer/Control/SignInMenu"]
-custom_minimum_size = Vector2(500, 50)
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 26
-placeholder_text = "Enter your password"
-
-[node name="validUsername" type="Button" parent="ColorRect/ScrollContainer/Control/SignInMenu"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Sign in"
-
-[node name="Leaderboard" type="VBoxContainer" parent="ColorRect/ScrollContainer/Control"]
-visible = false
-layout_mode = 0
-offset_top = 139.0
-offset_right = 648.0
-offset_bottom = 681.0
-
-[connection signal="pressed" from="ColorRect/ScrollContainer/Control/SignUpMenu/validUsername" to="." method="_on_valid_username_pressed"]
-[connection signal="pressed" from="ColorRect/ScrollContainer/Control/SignInMenu/validUsername" to="." method="_on_valid_username_pressed"]
+autowrap_mode = 2

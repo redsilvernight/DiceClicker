@@ -11,20 +11,13 @@ config_version=5
 [application]
 
 config/name="Dice Clicker"
-config/description="Dice Clicker is a minimalist clicker game where every roll brings you closer to higher scores.
-Click the dice, earn points, and unlock upgrades to roll faster and stronger. Watch your simple rolls grow into an avalanche of numbers as you push for the highest total possible.
-
-Made for the ScoreSpaceJam, this project is a fun little experiment mixing the addictive simplicity of idle/clicker mechanics with the randomness of dice.
-
-How far can your rolls take you?"
 run/main_scene="uid://dtih4uvxqnq84"
 config/features=PackedStringArray("4.5", "GL Compatibility")
-config/icon="uid://42xogs75n6w6"
+config/icon="res://icon.svg"
 
 [autoload]
 
 Global="*res://Script/global.gd"
-SilentWolf="*res://addons/silent_wolf/SilentWolf.gd"
 
 [display]
 
@@ -35,10 +28,6 @@ window/stretch/mode="canvas_items"
 [editor]
 
 export/convert_text_resources_to_binary=false
-
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/silent_wolf/plugin.cfg")
 
 [input]
 

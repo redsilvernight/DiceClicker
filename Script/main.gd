@@ -31,4 +31,3 @@ func _on_roller_timer_timeout(timer, roller):
 
 func _on_saving_timer_timeout() -> void:
 	Global.saveGame()
-	Global.saveHightScore()
