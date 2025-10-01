@@ -22,7 +22,7 @@ func updateDiceFace():
 	
 func updateScore(texture, score = 0):
 	Global.score += score
-	$Score.text = str(Global.score)
+	$Score.text = Global.displayNumber(Global.score)
 	if score != 0:
 		scorePopup(score, texture)
 
@@ -31,22 +31,21 @@ func scorePopup(score, texture):
 	
 	var sprite = TextureRect.new()
 	sprite.texture = texture
-	sprite.position = Vector2(0, 35)
+	sprite.position = Vector2(-40, 0)
 	popup.add_child(sprite)
 	
-	var sign = "+" if score > 0 else "-"
-	var color: Color = Color(0.0, 0.553, 0.096, 1.0) if sign == "+" else Color(0.719, 0.0, 0.0, 1.0)
-	popup.text = sign + str(score) if score >= 0 else str(score)
+	var color: Color = Color(0.0, 0.553, 0.096, 1.0) if score > 0 else Color(0.719, 0.0, 0.0, 1.0)
+	popup.text = ("+ " if score >= 0 else "") + Global.displayNumber(score)
 	popup.set("theme_override_colors/font_color", color)
 	
-	popup.position = $Score.position + Vector2(randi_range(75, 125), 100)
+	popup.position = Vector2(randf_range(140, Global.screen_size.x - 140), 80)
 	
 	popup.add_theme_font_size_override("font_size", 24)
 	add_child(popup)
 	
 	var tween = create_tween()
 	tween.set_parallel(true)
-	tween.tween_property(popup, "position", Vector2(popup.position.x, popup.position.y - 100 ), 2.0)
+	tween.tween_property(popup, "position", Vector2(popup.position.x, popup.position.y - 80 ), 3.0)
 	tween.tween_property(popup, "modulate:a", 0.0, 2.0)
 	
 	tween.tween_callback(popup.queue_free).set_delay(1.0)

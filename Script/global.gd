@@ -11,6 +11,10 @@ var nbr_dice: int = 1
 
 var score: int
 
+var screen_size: Vector2 = DisplayServer.window_get_size()
+
+var suffixes: Array = [ "K", "M", "B", "T" ]
+
 @onready var all_rollers: Dictionary = getRollers()
 @onready var all_dice: Array = getDice()
 @onready var icon_current_nbr_face: CompressedTexture2D = getIconCurrentNbrFace()
@@ -141,3 +145,33 @@ func _notification(what: int) -> void:
 		
 func _on_tree_exiting():
 	saveGame()
+
+func displayNumber(number: int) -> String:
+	var strNumber = str(number)
+	var numberWithComa = ""
+	var count = 0
+	
+	for i in range(strNumber.length() - 1, -1, -1):
+		numberWithComa = strNumber[i] + numberWithComa
+		count += 1
+		if count % 3 == 0 and i != 0:
+			numberWithComa = "," + numberWithComa
+	
+	var numberSplit = numberWithComa.split(',')
+	
+	var currentSuffix = ""
+	var decimals = ""
+	for suffix in suffixes:
+		if numberSplit.size() == 1:
+			break
+		
+		currentSuffix = suffix
+		if decimals != "" and int(decimals) >= 500:
+			numberSplit[-1] = str(int(numberSplit[-1]) + 1)
+		decimals = numberSplit[-1]
+		numberSplit.resize(numberSplit.size() - 1)
+	
+	if decimals != "":
+		decimals = "." + decimals
+	
+	return ','.join(numberSplit) + decimals + " " + currentSuffix
