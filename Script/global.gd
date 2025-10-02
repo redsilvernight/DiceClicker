@@ -79,7 +79,7 @@ func saveGame():
 	var save_data: Dictionary = {
 		"player_name" : player_name,
 		"score" : score,
-		"hight_score" : score if score > hight_score else hight_score,
+		#"hight_score" : score if score > hight_score else hight_score,
 		"buyed_roller": buyed_roller,
 		"current_dice": current_dice.id,
 		"current_nbr_face": nbr_dice_face,
@@ -111,7 +111,7 @@ func loadGame():
 			
 			if typeof(data) == TYPE_DICTIONARY:
 				score = data["score"]
-				hight_score = data["hight_score"]
+				#hight_score = data["hight_score"]
 				nbr_dice = data["current_nbr_dice"]
 				nbr_dice_face = data["current_nbr_face"]
 				icon_current_nbr_face = load(str("res://Asset/Dice/d", nbr_dice_face, ".png"))
