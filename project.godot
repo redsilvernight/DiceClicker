@@ -24,7 +24,6 @@ config/icon="uid://42xogs75n6w6"
 [autoload]
 
 Global="*res://Script/global.gd"
-SilentWolf="*res://addons/silent_wolf/SilentWolf.gd"
 
 [display]
 
@@ -38,7 +37,7 @@ export/convert_text_resources_to_binary=false
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/silent_wolf/plugin.cfg")
+enabled=PackedStringArray("res://addons/LootLockerSDK/plugin.cfg")
 
 [input]
 

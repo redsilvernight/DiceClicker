@@ -34,9 +34,9 @@ func scorePopup(score, texture):
 	sprite.position = Vector2(0, 35)
 	popup.add_child(sprite)
 	
-	var sign = "+" if score > 0 else "-"
-	var color: Color = Color(0.0, 0.553, 0.096, 1.0) if sign == "+" else Color(0.719, 0.0, 0.0, 1.0)
-	popup.text = sign + str(score) if score >= 0 else str(score)
+	var new_sign = "+" if score > 0 else "-"
+	var color: Color = Color(0.0, 0.553, 0.096, 1.0) if new_sign == "+" else Color(0.719, 0.0, 0.0, 1.0)
+	popup.text = new_sign + str(score) if score >= 0 else str(score)
 	popup.set("theme_override_colors/font_color", color)
 	
 	popup.position = $Score.position + Vector2(randi_range(75, 125), 100)
@@ -56,7 +56,7 @@ func _on_add_dice_pressed() -> void:
 	updateScore(load("res://Asset/Icon/dice_plus.png"), -dice_upgrade_price)
 	
 func _on_add_dice_face_pressed() -> void:
-	Global.addDiceFace(dice_face_upgrade_price)
+	Global.addDiceFace()
 	updateScore(load("res://Asset/Icon/dice_plus.png"),-dice_face_upgrade_price)
 	
 func canBuyUpgrade():

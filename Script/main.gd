@@ -31,4 +31,5 @@ func _on_roller_timer_timeout(timer, roller):
 
 func _on_saving_timer_timeout() -> void:
 	Global.saveGame()
-	Global.saveHightScore()
+	if Global.player_name != "":
+		Global.leaderboardControler.submitScore(Global.leaderboardId, Global.score, Global.player_name)

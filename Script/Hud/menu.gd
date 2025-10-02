@@ -12,8 +12,8 @@ func _on_leaderboard_pressed() -> void:
 	else:
 		clearScreen()
 		$ColorRect/ScrollContainer/leaderboard.custom_minimum_size = Vector2(0, 300 + 70)
+		$ColorRect/ScrollContainer/leaderboard.updateMenu()
 		$ColorRect/ScrollContainer/leaderboard.show()
-		$ColorRect/ScrollContainer/leaderboard.loadLeaderboard()
 		openMenu()
 
 func _on_upgrade_pressed() -> void:
