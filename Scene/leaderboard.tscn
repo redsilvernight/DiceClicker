@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://c03t1uln78it3"]
+[gd_scene load_steps=2 format=3 uid="uid://c03t1uln78it3"]
+
+[ext_resource type="Script" uid="uid://hey26lebexyo" path="res://Script/Hud/leaderboard.gd" id="1_xr8rx"]
 
 [node name="Leaderboard" type="Control"]
 layout_mode = 3
@@ -7,6 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_xr8rx")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
@@ -25,11 +28,10 @@ text = "Leaderboard"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="Label2" type="Label" parent="ColorRect"]
+[node name="ScrollContainer" type="ScrollContainer" parent="ColorRect"]
 layout_mode = 0
-offset_top = 130.0
-offset_right = 648.0
-offset_bottom = 811.0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="Control" type="Control" parent="ColorRect/ScrollContainer"]
 layout_mode = 2
@@ -37,8 +39,9 @@ layout_mode = 2
 [node name="ConnexionMenu" type="VBoxContainer" parent="ColorRect/ScrollContainer/Control"]
 visible = false
 layout_mode = 0
+offset_top = 167.0
 offset_right = 648.0
-offset_bottom = 648.0
+offset_bottom = 815.0
 
 [node name="Buttons" type="HBoxContainer" parent="ColorRect/ScrollContainer/Control/ConnexionMenu"]
 layout_mode = 2
@@ -55,6 +58,7 @@ layout_mode = 2
 text = "Sign In"
 
 [node name="SignUpMenu" type="VBoxContainer" parent="ColorRect/ScrollContainer/Control/ConnexionMenu"]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 19
 
@@ -63,14 +67,6 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 31
 text = "Sign Up"
 horizontal_alignment = 1
-
-[node name="email" type="TextEdit" parent="ColorRect/ScrollContainer/Control/ConnexionMenu/SignUpMenu"]
-visible = false
-custom_minimum_size = Vector2(500, 50)
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 26
-placeholder_text = "Enter your email adress"
 
 [node name="username" type="TextEdit" parent="ColorRect/ScrollContainer/Control/ConnexionMenu/SignUpMenu"]
 custom_minimum_size = Vector2(500, 50)
@@ -143,13 +139,4 @@ size_flags_horizontal = 4
 text = "Sign in"
 
 [node name="Leaderboard" type="VBoxContainer" parent="ColorRect/ScrollContainer/Control"]
-visible = false
 layout_mode = 0
-offset_top = 139.0
-offset_right = 648.0
-offset_bottom = 681.0
-
-[connection signal="pressed" from="ColorRect/ScrollContainer/Control/ConnexionMenu/Buttons/SignUpMenuButton" to="." method="_on_sign_up_menu_button_pressed"]
-[connection signal="pressed" from="ColorRect/ScrollContainer/Control/ConnexionMenu/Buttons/SignInMenuButton" to="." method="_on_sign_in_menu_button_pressed"]
-[connection signal="pressed" from="ColorRect/ScrollContainer/Control/ConnexionMenu/SignUpMenu/SignUpButton" to="." method="_on_sign_up_button_pressed"]
-[connection signal="pressed" from="ColorRect/ScrollContainer/Control/ConnexionMenu/SignInMenu/signInButton" to="." method="_on_sign_in_button_pressed"]

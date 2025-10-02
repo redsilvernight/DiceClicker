@@ -49,7 +49,7 @@ func scorePopup(score, texture):
 	tween.tween_callback(popup.queue_free).set_delay(1.0)
 
 func _on_add_dice_pressed() -> void:
-	Global.addDice(dice_upgrade_price)
+	Global.addDice()
 	updateScore(load("res://Asset/Icon/dice_plus.png"), -dice_upgrade_price)
 
 func _on_add_dice_face_pressed() -> void:
