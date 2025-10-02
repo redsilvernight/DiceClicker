@@ -1,10 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dtih4uvxqnq84"]
+[gd_scene load_steps=4 format=3 uid="uid://dtih4uvxqnq84"]
 
 [ext_resource type="Script" uid="uid://3uc21ydex6fj" path="res://Script/main.gd" id="1_sblpm"]
 [ext_resource type="PackedScene" uid="uid://dj61y42nf5kmy" path="res://Scene/hud.tscn" id="3_r34rm"]
 [ext_resource type="PackedScene" uid="uid://ch4rdcf5tuetv" path="res://Scene/animatedDice.tscn" id="4_2wwxx"]
-[ext_resource type="AudioStream" uid="uid://dt0bw5eig70cu" path="res://Asset/Sound/Ambiance.mp3" id="4_3amdw"]
-[ext_resource type="AudioStream" uid="uid://cbeprrqv7yaqh" path="res://Asset/Sound/Purchase.mp3" id="5_3amdw"]
 
 [node name="Main" type="Node2D"]
 texture_filter = 1
@@ -14,16 +12,6 @@ script = ExtResource("1_sblpm")
 
 [node name="RollDice" parent="Hud" instance=ExtResource("4_2wwxx")]
 position = Vector2(336, 414)
-
-[node name="AmbianceSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_3amdw")
-volume_db = -20.0
-autoplay = true
-parameters/looping = false
-
-[node name="BuySound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_3amdw")
-volume_db = -20.0
 
 [node name="SavingTimer" type="Timer" parent="."]
 wait_time = 60.0

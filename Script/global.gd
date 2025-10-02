@@ -8,7 +8,6 @@ var player_name
 
 var current_dice : Dice
 var menu_is_open: bool = false
-var sound_is_mute: bool = false
 
 var all_dice_face: Array = [4, 6, 8, 10, 12, 20]
 var max_dice: int = 5
@@ -17,20 +16,23 @@ var nbr_dice_face: int = all_dice_face[0]
 var nbr_dice: int = 1
 
 var score: int
-var hight_score: int
+
+var screen_size: Vector2 = DisplayServer.window_get_size()
+
+var suffixes: Array = [ "K", "M", "B", "T" ]
 
 @onready var all_rollers: Dictionary = getRollers()
 @onready var all_dice: Array = getDice()
 @onready var icon_current_nbr_face: CompressedTexture2D = getIconCurrentNbrFace()
 
 func _ready() -> void:
-	connect("tree_exiting",Callable(self,"_on_tree_exiting"))
+	connect("tree_exiting", Callable(self, "_on_tree_exiting"))
 	loadGame()
 
 func getIconCurrentNbrFace() -> CompressedTexture2D:
 	icon_current_nbr_face = load(str("res://Asset/Dice/d", nbr_dice_face, ".png"))
 	return icon_current_nbr_face
-	
+
 func getRollers() -> Dictionary:
 	var resource_dir = DirAccess.open("res://Resource/Roller")
 	var rollers : Dictionary
@@ -67,7 +69,7 @@ func addDiceFace():
 		get_parent().get_node("Main").get_node("Hud").updateDiceFace()
 		getIconCurrentNbrFace()
 		
-func addDice(_price):
+func addDice():
 	if nbr_dice < max_dice:
 		nbr_dice += 1
 
@@ -77,14 +79,12 @@ func saveGame():
 		buyed_roller[roller.item_name] = roller.buyed
 	
 	var save_data: Dictionary = {
-		"player_name" : player_name,
 		"score" : score,
-		#"hight_score" : score if score > hight_score else hight_score,
 		"buyed_roller": buyed_roller,
 		"current_dice": current_dice.id,
 		"current_nbr_face": nbr_dice_face,
 		"current_nbr_dice": nbr_dice,
-		"sound_is_mute": sound_is_mute,
+		"sound_is_mute": AudioManager.sound_is_mute,
 		"timestamp" : Time.get_unix_time_from_system()
 	}
 	
@@ -94,13 +94,6 @@ func saveGame():
 		savefile.store_string(JSON.stringify(save_data))
 		savefile.close()
 	
-	
-
-#func saveHightScore():
-	#if player_name and score > hight_score:
-		#print("ok")
-		#var sw_result: Dictionary = await SilentWolf.Scores.save_score(player_name, score).sw_save_score_complete
-
 func loadGame():
 	if FileAccess.file_exists("user://saveGame.json"):
 		var savefile = FileAccess.open("user://saveGame.json",FileAccess.READ)
@@ -111,13 +104,11 @@ func loadGame():
 			
 			if typeof(data) == TYPE_DICTIONARY:
 				score = data["score"]
-				#hight_score = data["hight_score"]
 				nbr_dice = data["current_nbr_dice"]
 				nbr_dice_face = data["current_nbr_face"]
 				icon_current_nbr_face = load(str("res://Asset/Dice/d", nbr_dice_face, ".png"))
 				current_dice = all_dice[data["current_dice"]]
-				sound_is_mute = data["sound_is_mute"]
-				AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), sound_is_mute)
+				AudioManager.toggleMuteSound(data["sound_is_mute"])
 				
 				var passed_time = Time.get_unix_time_from_system() - data['timestamp']
 				
@@ -160,9 +151,40 @@ func _notification(what: int) -> void:
 			leaderboardControler.submitScore(leaderboardId, score, player_name)
 			
 		saveGame()
-		await get_tree().create_timer(1).timeout
 		get_tree().quit()
 		
 func _on_tree_exiting():
-	get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
+	saveGame()
+
+func displayNumber(number: int, withDecimals: bool = false) -> String:
+	var strNumber = str(number)
+	var numberWithComa = ""
+	var count = 0
 	
+	for i in range(strNumber.length() - 1, -1, -1):
+		numberWithComa = strNumber[i] + numberWithComa
+		count += 1
+		if count % 3 == 0 and i != 0:
+			numberWithComa = "," + numberWithComa
+	
+	var numberSplit = numberWithComa.split(',')
+	
+	var currentSuffix = ""
+	var decimals = ""
+	for suffix in suffixes:
+		if numberSplit.size() == 1:
+			break
+		
+		currentSuffix = suffix
+		if withDecimals:
+			if decimals != "" and int(decimals) >= 500:
+				numberSplit[-1] = str(int(numberSplit[-1]) + 1)
+			decimals = numberSplit[-1]
+		elif int(numberSplit[-1]) >= 500:
+			numberSplit[-2] = str(int(numberSplit[-2]) + 1)
+		numberSplit.resize(numberSplit.size() - 1)
+	
+	if decimals != "":
+		decimals = "." + decimals
+	
+	return ','.join(numberSplit) + decimals + " " + currentSuffix

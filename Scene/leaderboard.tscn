@@ -1,6 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://c03t1uln78it3"]
-
-[ext_resource type="Script" uid="uid://hey26lebexyo" path="res://Script/Hud/leaderboard.gd" id="1_xr8rx"]
+[gd_scene format=3 uid="uid://c03t1uln78it3"]
 
 [node name="Leaderboard" type="Control"]
 layout_mode = 3
@@ -9,7 +7,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_xr8rx")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
@@ -28,7 +25,7 @@ text = "Leaderboard"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="ColorRect"]
+[node name="Label2" type="Label" parent="ColorRect"]
 layout_mode = 0
 offset_top = 130.0
 offset_right = 648.0

@@ -131,9 +131,9 @@ vertical_icon_alignment = 2
 [node name="Label" type="Label" parent="addDiceFace"]
 z_as_relative = false
 layout_mode = 0
-offset_left = -16.0
+offset_left = -70.0
 offset_top = -88.0
-offset_right = 130.0
+offset_right = 194.0
 offset_bottom = -38.0
 theme_override_font_sizes/font_size = 36
 text = "600"
@@ -146,13 +146,14 @@ scale = Vector2(5.34375, 5.34375)
 sprite_frames = SubResource("SpriteFrames_4h8nd")
 
 [node name="Score" type="Label" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -124.5
+anchors_preset = -1
+anchor_left = 0.086
+anchor_right = 0.93500006
+anchor_bottom = 0.098000005
+offset_left = 0.27199936
 offset_top = 1.0
-offset_right = 124.5
-offset_bottom = 88.0
+offset_right = 0.11993408
+offset_bottom = -0.20000458
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 36
 text = "0"

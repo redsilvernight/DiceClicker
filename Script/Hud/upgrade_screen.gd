@@ -3,7 +3,6 @@ extends Node
 var sceneCardUpgrade = preload("res://Scene/item_card.tscn")
 var scenePopUp = preload("res://Scene/popup_dice.tscn")
 var node_menu
-var bw_shader = preload("res://Shaders/blackwhite.gdshader")
 	
 func setupScreen(menu):
 	node_menu = menu
@@ -36,10 +35,7 @@ func updateAllCard():
 			if nextDicePrice <= Global.score:
 				btnNextDice.material = null
 			else:
-				var mat = ShaderMaterial.new()
-				mat.shader = bw_shader
-				mat.set_shader_parameter("intensity", 1.0)
-				btnNextDice.material = mat
+				btnNextDice.material = ShaderManager.bwShaderMaterial()
 		
 		var all_card = upgrade_menu.get_node("rollerMenu").get_children()
 		var roller_values = Global.all_rollers.values()
@@ -57,9 +53,9 @@ func updateCard(card, item, upgrade = 0):
 	if upgrade == 1:
 		card.get_node("BuyButton").show()
 		if item.item_type == Item.ItemType.ROLLER:
-			card.get_node("BuyButton").get_node("Price").text = str(int(item.getCurrentPrice(item)))
+			card.get_node("BuyButton").get_node("Price").text = Global.displayNumber(int(item.getCurrentPrice(item)))
 		else:
-			card.get_node("BuyButton").get_node("Price").text = str(int(item.item_cost))
+			card.get_node("BuyButton").get_node("Price").text = Global.displayNumber(int(item.item_cost))
 		if item.item_type == Item.ItemType.DICE:
 			if card.get_node("BuyButton").is_connected("pressed", self.diceBuyed):
 				card.get_node("BuyButton").disconnect("pressed", self.diceBuyed)
@@ -83,11 +79,8 @@ func updateCard(card, item, upgrade = 0):
 		buy_button.material = null
 		buy_button.disabled = false
 	else:
-		var mat = ShaderMaterial.new()
-		mat.shader = bw_shader
-		mat.set_shader_parameter("intensity", 1.0)
-		icon.material = mat
-		buy_button.material = mat
+		icon.material = ShaderManager.bwShaderMaterial()
+		buy_button.material = ShaderManager.bwShaderMaterial()
 		buy_button.disabled = true
 
 func rollerBuyed(roller, price):
@@ -100,8 +93,7 @@ func rollerBuyed(roller, price):
 	
 	updateCard(updated_card, roller, 1)
 	node_menu.get_parent().get_parent().get_parent().get_node("Hud").updateScore(roller.item_texture, price)
-	node_menu.get_parent().get_parent().get_parent().get_node("BuySound").play()
-	
+	AudioManager.playBuySound()
 
 func showDice(menu, type, upgrade = 0):
 	var dice
@@ -129,6 +121,6 @@ func diceBuyed(dice, card):
 		card.get_parent().hide()
 		updateAllCard()
 		node_menu.get_parent().get_parent().get_parent().get_node("Hud").updateScore(dice.item_texture, -dice.item_cost)
-		node_menu.get_parent().get_parent().get_parent().get_node("BuySound").play()
+		AudioManager.playBuySound()
 		node_menu.get_parent().updateDice()
 		
