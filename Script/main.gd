@@ -1,5 +1,17 @@
 extends Node2D
 
+@onready var DiceScene = load("res://Scene/animatedDice.tscn")
+
+func _ready() -> void:
+	if Global.nbr_dice > 1:
+		for i in range(Global.nbr_dice - 1):
+			var newDice = DiceScene.instantiate()
+			newDice.connect("dice_rolled", $Hud.updateScore)
+			var newPosX = randf_range(get_viewport_rect().size.x * 0.1, get_viewport_rect().size.x * 0.9)
+			var newPosY = randf_range(get_viewport_rect().size.y * 0.2, get_viewport_rect().size.y * 0.6)
+			newDice.position = Vector2(newPosX, newPosY)
+			$Hud.add_child(newDice)
+
 func _process(_delta: float) -> void:
 	autoClick()
 

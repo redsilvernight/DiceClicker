@@ -9,7 +9,7 @@ func _ready() -> void:
 	var menu = menuScene.instantiate()
 	add_child(menu)
 	
-	get_node("RollDice").connect("dice_rolled",updateScore)
+	get_node("RollDice").connect("dice_rolled", updateScore)
 	updateDiceFace()
 	canBuyUpgrade()
 
@@ -68,7 +68,10 @@ func canBuyUpgrade():
 		dice_face_upgrade.get_node("Label").text = "Out of order"
 	
 	if Global.nbr_dice < Global.max_dice:
-		dice_upgrade_price = Global.nbr_dice * 10000
+		dice_upgrade_price = Global.nbr_dice * 5000
+		dice_upgrade.get_node("Label").text = str(dice_upgrade_price)
+	else:
+		dice_upgrade.get_node("Label").text = "Out of order"
 	
 	if Global.score >= dice_face_upgrade_price and Global.nbr_dice_face != 20:
 		dice_face_upgrade.get_node("AnimatedSprite2D").material = null
@@ -76,11 +79,10 @@ func canBuyUpgrade():
 	else:
 		dice_face_upgrade.get_node("AnimatedSprite2D").material = ShaderManager.bwShaderMaterial()
 		dice_face_upgrade.disabled = true
-		dice_face_upgrade.get_node("Label").text = "Out of order"
 	
-	if Global.score >= dice_upgrade_price and Global.nbr_dice != 5:
-		dice_upgrade.material = null
+	if Global.score >= dice_upgrade_price and Global.nbr_dice < Global.max_dice:
+		dice_upgrade.get_node("TextureRect").material = null
 		dice_upgrade.disabled = false
 	else:
-		dice_upgrade.material = ShaderManager.bwShaderMaterial()
+		dice_upgrade.get_node("TextureRect").material = ShaderManager.bwShaderMaterial()
 		dice_upgrade.disabled = true

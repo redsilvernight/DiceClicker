@@ -10,7 +10,7 @@ var current_dice : Dice
 var menu_is_open: bool = false
 
 var all_dice_face: Array = [4, 6, 8, 10, 12, 20]
-var max_dice: int = 5
+var max_dice: int = 3
 
 var nbr_dice_face: int = all_dice_face[0]
 var nbr_dice: int = 1
@@ -24,6 +24,7 @@ var suffixes: Array = [ "K", "M", "B", "T" ]
 @onready var all_rollers: Dictionary = getRollers()
 @onready var all_dice: Array = getDice()
 @onready var icon_current_nbr_face: CompressedTexture2D = getIconCurrentNbrFace()
+@onready var DiceScene = load("res://Scene/animatedDice.tscn")
 
 func _ready() -> void:
 	connect("tree_exiting", Callable(self, "_on_tree_exiting"))
@@ -64,14 +65,23 @@ func getDice() -> Array:
 func addDiceFace():
 	if all_dice_face.find(nbr_dice_face) + 1 < all_dice_face.size() :
 		nbr_dice_face = all_dice_face[all_dice_face.find(nbr_dice_face) + 1]
-		get_parent().get_node("Main").get_node("Hud").get_node("RollDice").get_node("AnimatedSprite2D").animation = "score_d" + str(Global.nbr_dice_face)
-		get_parent().get_node("Main").get_node("Hud").get_node("RollDice").get_node("AnimatedSprite2D").frame = 1
+		var allDices = get_parent().get_node("Main").get_node("Hud").get_children()
+		for dice in allDices:
+			if dice.scene_file_path == "res://Scene/animatedDice.tscn":
+				dice.get_node("AnimatedSprite2D").animation = "score_d" + str(Global.nbr_dice_face)
+				dice.get_node("AnimatedSprite2D").frame = 1
 		get_parent().get_node("Main").get_node("Hud").updateDiceFace()
 		getIconCurrentNbrFace()
-		
+
 func addDice():
 	if nbr_dice < max_dice:
 		nbr_dice += 1
+		var newDice = DiceScene.instantiate()
+		newDice.connect("dice_rolled", get_parent().get_node("Main").get_node("Hud").updateScore)
+		var newPosX = randf_range(screen_size.x * 0.1, screen_size.x * 0.9)
+		var newPosY = randf_range(screen_size.y * 0.2, screen_size.y * 0.6)
+		newDice.position = Vector2(newPosX, newPosY)
+		get_parent().get_node("Main").get_node("Hud").add_child(newDice)
 
 func saveGame():
 	var buyed_roller: Dictionary

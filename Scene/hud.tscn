@@ -71,7 +71,6 @@ scale = Vector2(1.1406254, 1.1907625)
 texture = ExtResource("2_fmoiy")
 
 [node name="addDice" type="Button" parent="."]
-visible = false
 z_index = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -99,8 +98,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -108.0
-offset_top = -218.0
+offset_top = -200.0
 offset_right = 108.0
+offset_bottom = 18.0
 grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("3_et0hg")
@@ -109,11 +109,12 @@ texture = ExtResource("3_et0hg")
 z_as_relative = false
 layout_mode = 0
 offset_left = -16.0
-offset_top = -46.0
+offset_top = -40.0
 offset_right = 221.0
-offset_bottom = 4.0
+offset_bottom = 10.0
 theme_override_font_sizes/font_size = 36
-text = "Ajouter un dé"
+text = "5000"
+horizontal_alignment = 1
 
 [node name="addDiceFace" type="Button" parent="."]
 offset_left = 56.0

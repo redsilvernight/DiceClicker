@@ -21,6 +21,11 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 			start_rolling()
 
 func start_rolling() -> void:
+	for child in $"..".get_children():
+		if child.scene_file_path == "res://Scene/animatedDice.tscn":
+			child.z_index = 0
+	z_index = 1
+	
 	AudioManager.playRollingSound()
 	dice_rolling = true
 	$AnimatedSprite2D.play("roll_d" + str(Global.nbr_dice_face))
