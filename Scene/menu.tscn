@@ -135,6 +135,7 @@ anchors_preset = -1
 anchor_top = 0.16066484
 anchor_bottom = 1.0366759
 offset_right = 655.0
+grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_eas8t")
 horizontal_scroll_mode = 0
 metadata/_edit_use_anchors_ = true
@@ -143,6 +144,7 @@ metadata/_edit_lock_ = true
 [node name="upgradeMenu" type="Control" parent="ColorRect/ScrollContainer"]
 visible = false
 layout_mode = 2
+mouse_filter = 1
 
 [node name="rollerMenu" type="VBoxContainer" parent="ColorRect/ScrollContainer/upgradeMenu"]
 custom_minimum_size = Vector2(0, 800)
@@ -237,8 +239,9 @@ metadata/_edit_lock_ = true
 [node name="settingsMenu" parent="ColorRect/ScrollContainer" instance=ExtResource("9_ddci3")]
 visible = false
 layout_mode = 2
+mouse_filter = 1
 
-[node name="leaderboard" parent="ColorRect/ScrollContainer" instance=ExtResource("9_iaqyx")]
+[node name="Leaderboard" parent="ColorRect/ScrollContainer" instance=ExtResource("9_iaqyx")]
 visible = false
 layout_mode = 2
 
@@ -258,11 +261,6 @@ expand_icon = true
 libraries = {
 &"": SubResource("AnimationLibrary_u2k45")
 }
-
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
 
 [connection signal="pressed" from="ColorRect/HBoxContainer/Leaderboard" to="." method="_on_leaderboard_pressed"]
 [connection signal="pressed" from="ColorRect/HBoxContainer/Upgrade" to="." method="_on_upgrade_pressed"]

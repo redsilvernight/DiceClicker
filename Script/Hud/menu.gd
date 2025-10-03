@@ -7,13 +7,12 @@ func _process(_delta: float) -> void:
 		upgradeScreen.updateAllCard()
 		
 func _on_leaderboard_pressed() -> void:
-	if Global.menu_is_open && $ColorRect/ScrollContainer/leaderboard.visible:
+	if Global.menu_is_open && $ColorRect/ScrollContainer/Leaderboard.visible:
 		closeMenu()
 	else:
 		clearScreen()
-		$ColorRect/ScrollContainer/leaderboard.custom_minimum_size = Vector2(0, 300 + 70)
-		$ColorRect/ScrollContainer/leaderboard.updateMenu()
-		$ColorRect/ScrollContainer/leaderboard.show()
+		$ColorRect/ScrollContainer/Leaderboard.updateMenu()
+		$ColorRect/ScrollContainer/Leaderboard.show()
 		openMenu()
 
 func _on_upgrade_pressed() -> void:
