@@ -18,6 +18,8 @@ func updateDiceFace():
 	$addDiceFace/AnimatedSprite2D.frame = current_index
 
 func updateScore(texture, score = 0):
+	if Global.score > Global.hight_score:
+		Global.hight_score = Global.score
 	Global.score += score
 	$Score.text = Global.displayNumber(Global.score, true)
 	if score != 0:

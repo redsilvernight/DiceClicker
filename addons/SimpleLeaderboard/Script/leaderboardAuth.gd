@@ -4,11 +4,10 @@ var crypto = Crypto.new()
 enum AuthType { WHITELABEL }
 
 func signUp(instance) -> void:
-	var error_label = instance.get_node("ColorRect/ScrollContainer/Control/ConnexionMenu/SignUpMenu/error")
-	var _input_email = instance.get_node("ColorRect/ScrollContainer/Control/ConnexionMenu/SignUpMenu/email").text
-	var input_username = instance.get_node("ColorRect/ScrollContainer/Control/ConnexionMenu/SignUpMenu/username").text
-	var input_password = instance.get_node("ColorRect/ScrollContainer/Control/ConnexionMenu/SignUpMenu/password").text
-	var input_confirm_password = instance.get_node("ColorRect/ScrollContainer/Control/ConnexionMenu/SignUpMenu/confirmPassword").text
+	var error_label = instance.get_node("ColorRect/ScrollContainer/ConnexionMenu/SignUpMenu/error")
+	var input_username = instance.get_node("ColorRect/ScrollContainer/ConnexionMenu/SignUpMenu/username").text
+	var input_password = instance.get_node("ColorRect/ScrollContainer/ConnexionMenu/SignUpMenu/password").text
+	var input_confirm_password = instance.get_node("ColorRect/ScrollContainer/ConnexionMenu/SignUpMenu/confirmPassword").text
 	
 	var password_regex = RegEx.new()
 	password_regex.compile(r"^(?=.*[A-Z])(?=.*\d).{8,}$")
@@ -50,10 +49,10 @@ func saveCredential(username, password):
 		savefile.close()
 
 func signIn(instance, input_username: String = "", input_password: String = ""):
-	var error_label = instance.get_node("ColorRect/ScrollContainer/Control/ConnexionMenu/SignInMenu/error")
+	var error_label = instance.get_node("ColorRect/ScrollContainer/ConnexionMenu/SignInMenu/error")
 	if input_username == "" and input_password == "":
-		var text_username = instance.get_node("ColorRect/ScrollContainer/Control/ConnexionMenu/SignInMenu/username").text
-		var text_password = instance.get_node("ColorRect/ScrollContainer/Control/ConnexionMenu/SignInMenu/password").text
+		var text_username = instance.get_node("ColorRect/ScrollContainer/ConnexionMenu/SignInMenu/username").text
+		var text_password = instance.get_node("ColorRect/ScrollContainer/ConnexionMenu/SignInMenu/password").text
 		if !text_username.is_empty() and !text_password.is_empty():
 			input_username = text_username
 			input_password = text_password
@@ -64,6 +63,8 @@ func signIn(instance, input_username: String = "", input_password: String = ""):
 	if !login_user is String:
 		if !FileAccess.file_exists("user://credentials.json"):
 			saveCredential(input_username, input_password)
+		
+		instance.is_ready = true
 		instance.updateMenu()
 	else:
 		instance.returnError(error_label, login_user)
@@ -125,4 +126,5 @@ func startSession(username, password):
 				return response.error_data.message
 			else:
 				Global.player_name = response.player_identifier
+				Global.player_id = response.player_id
 				return true

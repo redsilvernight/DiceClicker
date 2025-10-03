@@ -1,142 +1,157 @@
 [gd_scene load_steps=2 format=3 uid="uid://c03t1uln78it3"]
 
-[ext_resource type="Script" uid="uid://hey26lebexyo" path="res://Script/Hud/leaderboard.gd" id="1_xr8rx"]
+[ext_resource type="Script" uid="uid://di3cv4crlucrg" path="res://addons/SimpleLeaderboard/Script/leaderboard.gd" id="1_xr8rx"]
 
 [node name="Leaderboard" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
 script = ExtResource("1_xr8rx")
+
+[node name="Label" type="Label" parent="."]
+z_index = 2
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_right = 649.0
+offset_bottom = 55.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "Leaderboard"
+horizontal_alignment = 1
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
 offset_right = 648.0
-offset_bottom = 811.0
+offset_bottom = 903.0
 color = Color(0.6039216, 0.6039216, 0.6039216, 1)
-
-[node name="Label" type="Label" parent="ColorRect"]
-layout_mode = 0
-offset_left = 40.0
-offset_top = 38.0
-offset_right = 603.0
-offset_bottom = 93.0
-theme_override_font_sizes/font_size = 40
-text = "Leaderboard"
-horizontal_alignment = 1
-autowrap_mode = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="ColorRect"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Control" type="Control" parent="ColorRect/ScrollContainer"]
-layout_mode = 2
-
-[node name="ConnexionMenu" type="VBoxContainer" parent="ColorRect/ScrollContainer/Control"]
-visible = false
-layout_mode = 0
-offset_top = 167.0
+offset_top = 55.0
 offset_right = 648.0
-offset_bottom = 815.0
+offset_bottom = 499.0
 
-[node name="Buttons" type="HBoxContainer" parent="ColorRect/ScrollContainer/Control/ConnexionMenu"]
+[node name="ConnexionMenu" type="VBoxContainer" parent="ColorRect/ScrollContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Buttons" type="HBoxContainer" parent="ColorRect/ScrollContainer/ConnexionMenu"]
+z_index = 1
 layout_mode = 2
 alignment = 1
 
-[node name="SignUpMenuButton" type="Button" parent="ColorRect/ScrollContainer/Control/ConnexionMenu/Buttons"]
+[node name="SignUpMenuButton" type="Button" parent="ColorRect/ScrollContainer/ConnexionMenu/Buttons"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 text = "Sign Up"
 
-[node name="SignInMenuButton" type="Button" parent="ColorRect/ScrollContainer/Control/ConnexionMenu/Buttons"]
+[node name="SignInMenuButton" type="Button" parent="ColorRect/ScrollContainer/ConnexionMenu/Buttons"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 text = "Sign In"
 
-[node name="SignUpMenu" type="VBoxContainer" parent="ColorRect/ScrollContainer/Control/ConnexionMenu"]
-visible = false
+[node name="SignUpMenu" type="VBoxContainer" parent="ColorRect/ScrollContainer/ConnexionMenu"]
 layout_mode = 2
-theme_override_constants/separation = 19
+theme_override_constants/separation = 9
+alignment = 1
 
-[node name="Inscription" type="Label" parent="ColorRect/ScrollContainer/Control/ConnexionMenu/SignUpMenu"]
+[node name="Inscription" type="Label" parent="ColorRect/ScrollContainer/ConnexionMenu/SignUpMenu"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 31
 text = "Sign Up"
 horizontal_alignment = 1
 
-[node name="username" type="TextEdit" parent="ColorRect/ScrollContainer/Control/ConnexionMenu/SignUpMenu"]
+[node name="username" type="TextEdit" parent="ColorRect/ScrollContainer/ConnexionMenu/SignUpMenu"]
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 26
 placeholder_text = "Enter your username"
 
-[node name="password" type="TextEdit" parent="ColorRect/ScrollContainer/Control/ConnexionMenu/SignUpMenu"]
+[node name="password" type="TextEdit" parent="ColorRect/ScrollContainer/ConnexionMenu/SignUpMenu"]
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 26
 placeholder_text = "Enter your password"
 
-[node name="confirmPassword" type="TextEdit" parent="ColorRect/ScrollContainer/Control/ConnexionMenu/SignUpMenu"]
+[node name="confirmPassword" type="TextEdit" parent="ColorRect/ScrollContainer/ConnexionMenu/SignUpMenu"]
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 26
 placeholder_text = "Confirm your password"
 
-[node name="error" type="Label" parent="ColorRect/ScrollContainer/Control/ConnexionMenu/SignUpMenu"]
+[node name="error" type="Label" parent="ColorRect/ScrollContainer/ConnexionMenu/SignUpMenu"]
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0.6449286, 0.22027609, 0.21620288, 1)
 horizontal_alignment = 1
 
-[node name="SignUpButton" type="Button" parent="ColorRect/ScrollContainer/Control/ConnexionMenu/SignUpMenu"]
+[node name="SignUpButton" type="Button" parent="ColorRect/ScrollContainer/ConnexionMenu/SignUpMenu"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Sign up"
 
-[node name="SignInMenu" type="VBoxContainer" parent="ColorRect/ScrollContainer/Control/ConnexionMenu"]
+[node name="SignInMenu" type="VBoxContainer" parent="ColorRect/ScrollContainer/ConnexionMenu"]
 visible = false
 layout_mode = 2
 theme_override_constants/separation = 19
 
-[node name="Label" type="Label" parent="ColorRect/ScrollContainer/Control/ConnexionMenu/SignInMenu"]
+[node name="Label" type="Label" parent="ColorRect/ScrollContainer/ConnexionMenu/SignInMenu"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 31
 text = "Sign In"
 horizontal_alignment = 1
 
-[node name="username" type="TextEdit" parent="ColorRect/ScrollContainer/Control/ConnexionMenu/SignInMenu"]
+[node name="username" type="TextEdit" parent="ColorRect/ScrollContainer/ConnexionMenu/SignInMenu"]
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 26
 placeholder_text = "Enter your username"
 
-[node name="password" type="TextEdit" parent="ColorRect/ScrollContainer/Control/ConnexionMenu/SignInMenu"]
+[node name="password" type="TextEdit" parent="ColorRect/ScrollContainer/ConnexionMenu/SignInMenu"]
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 26
 placeholder_text = "Enter your password"
 
-[node name="error" type="Label" parent="ColorRect/ScrollContainer/Control/ConnexionMenu/SignInMenu"]
+[node name="error" type="Label" parent="ColorRect/ScrollContainer/ConnexionMenu/SignInMenu"]
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0.6449286, 0.22027609, 0.21620288, 1)
 horizontal_alignment = 1
 
-[node name="signInButton" type="Button" parent="ColorRect/ScrollContainer/Control/ConnexionMenu/SignInMenu"]
+[node name="signInButton" type="Button" parent="ColorRect/ScrollContainer/ConnexionMenu/SignInMenu"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Sign in"
 
-[node name="Leaderboard" type="VBoxContainer" parent="ColorRect/ScrollContainer/Control"]
-layout_mode = 0
+[node name="Leaderboard" type="VBoxContainer" parent="ColorRect/ScrollContainer"]
+custom_minimum_size = Vector2(648, 0)
+layout_mode = 2
+theme_override_constants/separation = 74
+alignment = 1
+
+[node name="YourRank" type="VBoxContainer" parent="ColorRect/ScrollContainer/Leaderboard"]
+visible = false
+custom_minimum_size = Vector2(648, 80)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ColorRect/ScrollContainer/Leaderboard/YourRank"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Your Rank :"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="ColorRect/ScrollContainer/ConnexionMenu/Buttons/SignUpMenuButton" to="." method="_on_sign_up_menu_button_pressed"]
+[connection signal="pressed" from="ColorRect/ScrollContainer/ConnexionMenu/Buttons/SignInMenuButton" to="." method="_on_sign_in_menu_button_pressed"]
+[connection signal="pressed" from="ColorRect/ScrollContainer/ConnexionMenu/SignUpMenu/SignUpButton" to="." method="_on_sign_up_button_pressed"]
+[connection signal="pressed" from="ColorRect/ScrollContainer/ConnexionMenu/SignInMenu/signInButton" to="." method="_on_sign_in_button_pressed"]

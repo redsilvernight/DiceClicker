@@ -2,9 +2,10 @@ extends Node
 
 var leaderboardId: String = "31916"
 var leaderboardNbrEntrieHightScore: int = 10
-var leaderboardControler: leaderboardManager = preload("res://Script/Hud/leaderboardManager.gd").new()
+var leaderboardControler: = preload("res://addons/SimpleLeaderboard/Script/leaderboardManager.gd").new()
 var leaderboardAuthMethod = leaderboardControler.leaderboardAuth.AuthType.WHITELABEL
 var player_name
+var player_id
 
 var current_dice : Dice
 var menu_is_open: bool = false
@@ -16,6 +17,7 @@ var nbr_dice_face: int = all_dice_face[0]
 var nbr_dice: int = 1
 
 var score: int
+var hight_score: int
 
 var screen_size: Vector2 = DisplayServer.window_get_size()
 
@@ -79,7 +81,9 @@ func saveGame():
 		buyed_roller[roller.item_name] = roller.buyed
 	
 	var save_data: Dictionary = {
+		"player_name" : player_name,
 		"score" : score,
+		"hight_score": hight_score,
 		"buyed_roller": buyed_roller,
 		"current_dice": current_dice.id,
 		"current_nbr_face": nbr_dice_face,
@@ -93,6 +97,9 @@ func saveGame():
 	if savefile:
 		savefile.store_string(JSON.stringify(save_data))
 		savefile.close()
+		
+	if player_name:
+			leaderboardControler.submitScore(leaderboardId, hight_score, player_name)
 	
 func loadGame():
 	if FileAccess.file_exists("user://saveGame.json"):
@@ -103,7 +110,9 @@ func loadGame():
 			savefile.close()
 			
 			if typeof(data) == TYPE_DICTIONARY:
+				player_name = data["player_name"]
 				score = data["score"]
+				hight_score = data["hight_score"]
 				nbr_dice = data["current_nbr_dice"]
 				nbr_dice_face = data["current_nbr_face"]
 				icon_current_nbr_face = load(str("res://Asset/Dice/d", nbr_dice_face, ".png"))
@@ -147,14 +156,12 @@ func resetGame():
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
-		if player_name:
-			leaderboardControler.submitScore(leaderboardId, score, player_name)
-			
 		saveGame()
+		await get_tree().create_timer(2).timeout
 		get_tree().quit()
 		
 func _on_tree_exiting():
-	saveGame()
+	get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
 
 func displayNumber(number: int, withDecimals: bool = false) -> String:
 	var strNumber = str(number)

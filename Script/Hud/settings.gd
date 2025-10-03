@@ -5,7 +5,7 @@ func _ready() -> void:
 		$ColorRect/MuteSound.button_pressed = true
 
 func _on_exit_game_pressed() -> void:
-	get_tree().quit()
+	get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
 
 func _on_reset_pressed() -> void:
 	Global.resetGame()
